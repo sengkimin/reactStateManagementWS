@@ -8,7 +8,7 @@ const initialState: ShoppingItem = {
   item: ["Milk", "Bread"],
 };
 
-export const fetchUsers = createAsyncThunk('user/fetchUsers', async () => {
+export const Users = createAsyncThunk('user/fetchUsers', async () => {
   const response = await fetch('https://jsonplaceholder.typicode.com/todos');
   const data = await response.json();
   return data.map((task: { title: string }) => task.title);
@@ -23,7 +23,7 @@ const shoppingSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
-    builder.addCase(fetchUsers.fulfilled, (state, action) => {
+    builder.addCase(Users.fulfilled, (state, action) => {
       state.item.push(...action.payload);
     });
   },
